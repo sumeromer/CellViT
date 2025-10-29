@@ -1,0 +1,141 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cellvit"
+version = "1.0.0"
+description = "CellViT: Vision Transformers for precise cell segmentation and classification"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "Apache License 2.0"}
+authors = [
+    {name = "Ömer Sümer"},
+]
+keywords = ["cell segmentation", "nuclei segmentation", "vision transformers", "medical imaging"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+
+dependencies = [
+    # Core packages
+    "ipykernel>=7.0.1",
+    "jupyterlab>=4.4.9",
+    "numpy",
+
+    # PyTorch ecosystem
+    # Note: Install PyTorch with CUDA support using:
+    # pip install torch==2.9.0+cu126 torchvision==0.24.0+cu126 --extra-index-url https://download.pytorch.org/whl/cu126
+    "torch==2.9.0",
+    "torchvision==0.24.0",
+    "torch-geometric>=2.7.0",
+    "open-clip-torch==3.2.0",
+    "peft==0.17.1",
+    "lightning>=2.5.5",
+    "torchmetrics>=1.8.2",
+    "wandb==0.22.2",
+    "mlflow>=3.5.0",
+    "huggingface_hub>=0.35.3",
+    "datasets>=4.2.0",
+    "albumentations>=2.0.8",
+    "pycocotools>=2.0.10",
+    "tensorboard>=2.20.0",
+    "torchinfo>=1.8.0",
+
+    # CellViT-specific dependencies
+    "einops>=0.6.1",
+    "opencv-python-headless>=4.5.4.58",
+    "openslide-python>=1.2.0",
+    "scikit-image>=0.19.3",
+    "SimpleITK>=2.2.1",
+    "Shapely>=1.8.5",
+    "geojson>=3.0.0",
+    "rasterio>=1.3.5",
+    "natsort>=8.4.0",
+    "h5py>=3.9.0",
+    "stardist>=0.8.5",
+    "csbdeep>=0.7.4",
+    "tabulate>=0.9.0",
+    "ujson>=5.8.0",
+    "pandarallel>=1.6.5",
+
+    # Data science libraries
+    "matplotlib>=3.10.7",
+    "tqdm>=4.67.1",
+    "pandas>=2.3.3",
+    "seaborn>=0.13.2",
+    "scipy>=1.16.2",
+    "scikit-learn>=1.7.2",
+    "geopandas>=1.1.1",
+    "pyarrow>=21.0.0",
+    "scanpy>=1.11.4",
+    "squidpy>=1.6.5",
+
+    # Configuration management
+    "hydra-core==1.3.2",
+    "hydra-joblib-launcher==1.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "flake8",
+    "pre-commit",
+    "twine>=6.2.0",
+    "coverage",
+]
+
+# CUDA-enabled PyTorch packages (use this for installation with CUDA support)
+cuda = [
+    "torch==2.9.0+cu126",
+    "torchvision==0.24.0+cu126",
+]
+
+[project.urls]
+Homepage = "https://github.com/sumeromer/CellViT"
+Repository = "https://github.com/sumeromer/CellViT"
+"Original Repository" = "https://github.com/TIO-IKIM/CellViT"
+
+[tool.setuptools]
+packages = ["cell_segmentation"]
+
+[tool.setuptools.package-data]
+"*" = ["*.yaml", "*.yml"]
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+source = ["cell_segmentation"]
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [".git", "__pycache__", "build", "dist"]
