@@ -1,6 +1,6 @@
 # CellViT
 
-**2025-10-29:** This repository contains PanNuke training and evaluation codebase of [CellViT](https://github.com/TIO-IKIM/CellViT). The original codebase can be found under [```CellViT-main-05097e1```](https://github.com/sumeromer/CellViT/tree/CellViT-main-05097e1) branch. I refactored to the current PyTorch and Python libraries for a better benchmarking by re-running CellViT training for cell segmentation.
+**2025-10-29/Ömer:** This repository contains PanNuke training and evaluation codebase of [CellViT](https://github.com/TIO-IKIM/CellViT). The original codebase can be found under [```CellViT-main-05097e1```](https://github.com/sumeromer/CellViT/tree/CellViT-main-05097e1) branch. I refactored to the current PyTorch and Python libraries for a better benchmarking by re-running CellViT training for cell segmentation.
 
 
 ## CellViT: Nuclei segmentation on PanNuke dataset
